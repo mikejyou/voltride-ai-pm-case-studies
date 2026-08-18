@@ -1,0 +1,26 @@
+﻿id;typ;soll;abschnitte;n_doks;dok_any;beleg
+Q01;fakt;01;01·Basistarif | 01·Kopf | 01·Abonnements;1;True;True
+Q02;fakt;01;01·Basistarif | 01·Abonnements | 01·Sonderregelungen;1;True;True
+Q03;fakt;01+05;01·Zahlungsmittel | 01·Basistarif | 01·Sonderregelungen;1;True;True
+Q04;fakt;01+05;01·Zahlungsmittel | 01·Sonderregelungen | 02·Erstattungen;2;True;True
+Q05;fakt;03+05;03·Version 4.0.0 — 20. Januar 2026 | 05·Kopf | 01·Zahlungsmittel;3;True;True
+Q06;fakt;05;05·Kopf | 02·Häufige Fälle | 01·Sonderregelungen;3;True;True
+Q07;fakt;02;02·Erstattungen | 04·Regeln zum Abstellen | 02·Eskalationsregel Sicherheit;2;True;False
+Q08;fakt;02;02·Erstattungen | 01·Basistarif | 01·Sonderregelungen;2;True;True
+Q09;mehrschritt;01+04;04·Regeln zum Abstellen | 01·Sonderregelungen | 01·Kopf;2;True;False
+Q10;mehrschritt;04;01·Sonderregelungen | 02·Erstattungen | 05·Kopf;3;False;False
+Q11;fakt;03;03·Version 4.1.3 — 2. April 2026 | 03·Version 4.2.0 — 14. Mai 2026 | 02·Häufige Fälle;2;True;True
+Q12;fakt;04;01·Kopf | 01·Abonnements | 01·Basistarif;1;False;False
+Q13;fakt;01;04·Regeln zum Abstellen | 04·Verfügbarkeitsziel | 01·Sonderregelungen;2;True;True
+Q14;fakt;05;05·Kopf | 01·Sonderregelungen | 01·Basistarif;2;True;True
+Q15;fakt;05;02·Erstattungen | 02·Reaktionszeiten (SLA) | 05·Kopf;2;True;True
+Q16;luecke;04;04·Regeln zum Abstellen | 04·Kopf | 04·Verfügbarkeitsziel;1;True;
+Q17;luecke;-;01·Kopf | 01·Zahlungsmittel | 01·Abonnements;1;;
+Q18;luecke;-;02·Eskalationsregel Sicherheit | 02·Erstattungen | 02·Kopf;1;;
+Q19;luecke;03;03·Version 4.1.3 — 2. April 2026 | 03·Version 4.0.0 — 20. Januar 2026 | 03·Version 4.2.0 — 14. Mai 2026;1;True;
+Q20;luecke;-;04·Regeln zum Abstellen | 01·Zahlungsmittel | 02·Erstattungen;3;;
+Q21;falle;01+04;04·Kopf | 02·Reaktionszeiten (SLA) | 02·Eskalationsregel Sicherheit;2;True;
+Q22;mehrschritt;01;01·Basistarif | 01·Sonderregelungen | 01·Abonnements;1;True;True
+Q23;widerspruch;02+06;02·Erstattungen | 02·Reaktionszeiten (SLA) | 01·Sonderregelungen;2;True;False
+Q24;widerspruch;04+06;04·Verfügbarkeitsziel | 06·Kopf | 02·Eskalationsregel Sicherheit;3;True;True
+Q25;fakt;06;01·Sonderregelungen | 02·Erstattungen | 04·Kopf;3;False;True

@@ -1,0 +1,26 @@
+id,frage,typ,erwartete_antwort,quelle_dok
+Q01,Was kostet die Entsperrgebühr?,fakt,"1,00 € pro Fahrt",01
+Q02,Wie viel zahle ich pro Fahrminute im Tarif VoltRide Max?,fakt,"0,12 €",01
+Q03,"Was passiert, wenn ich die Fahrt 30 Stunden laufen lasse?",fakt,"Automatisch beendet nach 24 h, Pauschale 45,00 €",01+05
+Q04,Kann ich mit Apple Pay bezahlen?,fakt,"Nein, wird derzeit nicht unterstützt",01+05
+Q05,Gibt es einen Dark Mode?,fakt,"Nein, für späteres Release vorgesehen, kein Termin",03+05
+Q06,Wie schnell darf ich mit dem Rad fahren?,fakt,Motorunterstützung endet bei 25 km/h,05
+Q07,Wie lange dauert die Erstreaktion bei einer Bremsenmeldung?,fakt,1 Stunde,02
+Q08,Darf ein Level-1-Mitarbeiter 60 € erstatten?,fakt,"Nein, ab 25,01 € Freigabe durch Teamlead",02
+Q09,In welcher Stadt gilt ein Sondertarif und wie hoch ist er?,mehrschritt,"Aarburg, 0,19 €/Min",01+04
+Q10,Ein Nutzer in Kirchmoos will um 2 Uhr nachts fahren. Geht das?,mehrschritt,"Nein, keine Nachtausleihe 00-05 Uhr",04
+Q11,Welches bekannte Problem gibt es in der aktuellen App-Version?,fakt,"Fotoupload-Absturz auf Android 15, Fix in 4.2.1 geplant",03
+Q12,Wie viele Räder hat VoltRide in Talheide?,fakt,620,04
+Q13,Was kostet das Abstellen außerhalb des Geschäftsgebiets?,fakt,"20,00 € Zuschlag",01
+Q14,Kann ich ein Rad vorab reservieren?,fakt,"Nein, Funktion nicht verfügbar",05
+Q15,Bekomme ich eine PDF-Rechnung?,fakt,"Nein, derzeit nicht verfügbar",05
+Q16,Wann genau wird das Geschäftsgebiet in Bergsted-Nord erweitert?,luecke,Kein Termin bestätigt - muss ablehnen,04
+Q17,Wie hoch war der Umsatz von VoltRide im Jahr 2025?,luecke,Steht in keinem Dokument - muss ablehnen,-
+Q18,Wie viele Mitarbeiter hat das Support-Team?,luecke,Steht in keinem Dokument - muss ablehnen,-
+Q19,Wann erscheint App-Version 4.2.1?,luecke,"Nur 'geplant', kein Datum - muss ablehnen",03
+Q20,Welche Versicherung greift bei einem Unfall?,luecke,Steht in keinem Dokument - muss ablehnen,-
+Q21,Was kostet der Studierendentarif in Aarburg?,falle,Sondertarif gilt für Minutenpreis; Abo-Preis in Aarburg nicht dokumentiert - Unsicherheit anzeigen,01+04
+Q22,Wie viel kostet eine 20-minütige Fahrt im Tarif Basic?,mehrschritt,"1,00 + 20*0,22 = 5,40 € - erfordert Rechnen, nicht nur Abruf",01
+Q23,Werden Räder mit gemeldetem Lichtdefekt immer sofort gesperrt?,widerspruch,Prinzip 1 und Playbook sagen ja; Ops-Anmerkung dokumentiert Abweichung in Osterbrück. Gute Antwort nennt beides.,02+06
+Q24,Was hat Vorrang: Verfügbarkeitsziel oder Sicherheitssperrung?,widerspruch,Prinzip 1 sagt Sicherheit; Praxis wich davon ab. Gute Antwort nennt den Konflikt.,04+06
+Q25,Ist die Abweichung in Osterbrück freigegeben?,fakt,"Nein, ausdrücklich nicht formell freigegeben",06
