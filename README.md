@@ -1,63 +1,70 @@
-# VoltRide — Support-Assistent über Dokumente (RAG)
+# VoltRide — RAG support assistant over internal documents
 
-Portfolio-Case-Study zu **Grounding und begründeter Verweigerung**: Wann darf ein
-RAG-System antworten, wann muss es schweigen, und was kostet jede der beiden
-Fehlerrichtungen?
+A portfolio case study on **grounding and justified refusal**: when may a retrieval-augmented
+system answer, when must it stay silent, and what does each of the two failure directions cost?
 
-> **Alle Daten sind erfunden.** VoltRide ist ein fiktives Unternehmen, die sechs
-> Dokumente und die 25 Eval-Fragen sind synthetisch. Kein Bezug zu einem realen
-> Arbeitgeber. Der Vorteil: der Datensatz hat Ground-Truth-Labels, dadurch ist
-> Qualität messbar statt behauptet.
+> **All data is invented.** VoltRide is a fictional company; the six documents and the 25
+> evaluation questions are synthetic. No connection to any real employer. The upside: the
+> dataset carries ground-truth labels, which makes quality measurable rather than asserted.
+>
+> The document corpus is in German, and so are the prompts and the model's answers. That is
+> deliberate — English-language retrieval is the easy case, and the central finding below is
+> partly a consequence of running an English-trained embedding model on German text. The
+> analysis, this README and the case study are in English.
 
-**→ [CASE_STUDY.md](CASE_STUDY.md)** — die Auswertung, 3–4 Minuten Lesezeit.
+**→ [CASE_STUDY.md](CASE_STUDY.md)** — the write-up, 3–4 minutes.
 
-## Ergebnis in drei Zeilen
+## The result in three lines
 
-- Von 13 Fragen, bei denen der Beleg nachweislich im Kontext stand, wurden **12 richtig**
-  beantwortet. Jeder echte Fehler entstand eine Stufe davor, beim Suchen.
-- Drei unterschiedlich strenge Ablehnungsregeln bewegten die Trefferquote **nicht**.
-  Sie ist eine Versicherung gegen Retrieval-Fehler, kein Qualitätshebel.
-- Die automatische Bewertung lag bei **4 von 17** Fragen falsch — 24 Prozentpunkte
-  Messfehler, verursacht vom Messinstrument.
+- Of 13 questions where the supporting passage was demonstrably in context, **12 were
+  answered correctly**. Every genuine failure happened one step earlier, during retrieval.
+- Three increasingly strict refusal rules moved accuracy **not at all**. The refusal rule is
+  insurance against retrieval failures, not a quality lever.
+- My own automated grader was wrong on **4 of 17** questions — 24 percentage points of
+  measurement error, produced by the instrument rather than the system.
 
-![Zielkonflikt](bilder/cs2_zielkonflikt.png)
+![Grounding vs. refusal](images/tradeoff_grounding_vs_refusal.png)
 
-## Aufbau
+## Repository layout
 
-| Ordner | Inhalt |
+| Path | Contents |
 |---|---|
-| `notebook/` | `CaseStudy2_RAG_Support.ipynb` — läuft von oben nach unten, 11 Zellen |
-| `daten/docs/` | die sechs fiktiven Firmendokumente |
-| `daten/eval_fragen_rag.csv` | 25 Fragen mit bekannter Wahrheit |
-| `ergebnisse/` | Rohergebnisse der drei Läufe, Kennzahlen, Retrieval-Diagnose, Handcodierung |
-| `bilder/` | das Diagramm aus der Case Study |
+| `notebook/` | `CaseStudy2_RAG_Support.ipynb` — runs top to bottom, 11 cells |
+| `daten/docs/` | the six fictional company documents (German) |
+| `daten/eval_fragen_rag.csv` | 25 evaluation questions with known answers |
+| `ergebnisse/` | raw results of the three runs, metrics, retrieval diagnostics, manual coding |
+| `images/` | the figure used in the case study |
 
-## Selbst ausführen
+Folder and column names inside the notebook and the result files are German, matching the
+corpus. `CASE_STUDY.md` explains every metric in English.
 
-1. Notebook in Google Colab öffnen (oder lokal mit Jupyter).
-2. Kostenlosen API-Key auf [console.groq.com/keys](https://console.groq.com/keys) holen
-   und als Colab-Secret `GROQ_API_KEY` hinterlegen.
-3. Die sieben Dateien aus `daten/` hochladen — Ordnerstruktur ist egal, Zelle 2 findet sie.
-4. **Zellen 1–5 kosten keinen einzigen API-Aufruf.** Dort steckt die komplette
-   Retrieval-Diagnose inklusive Regressionswarnung. Erst Zelle 9 ruft das Modell auf.
+## Running it yourself
 
-Drei komplette Läufe über 25 Fragen kosten rund 0,01 USD. Embeddings laufen lokal.
+1. Open the notebook in Google Colab (or locally with Jupyter).
+2. Get a free API key at [console.groq.com/keys](https://console.groq.com/keys) and store it
+   as the Colab secret `GROQ_API_KEY`.
+3. Upload the seven files from `daten/` — folder structure does not matter, cell 2 finds them.
+4. **Cells 1–5 make no API calls at all.** They contain the complete retrieval diagnostic,
+   including a regression warning that compares against the previous configuration. Only
+   cell 9 talks to the model.
 
-## Messaufbau
+Three full runs over 25 questions cost about $0.01. Embeddings run locally and are free.
 
-Zwei getrennte Kennzahlen, nie eine gemeinsame:
+## How quality is measured
 
-- **Trefferquote** auf den 17 beantwortbaren Fragen (14 `fakt` + 3 `mehrschritt`)
-- **Ablehnungsquote** auf den 5 echten Lücken
+Two metrics, never merged into one:
 
-Dazu getrennt gemessen der **Beleg-Recall**: stand die belegende Textstelle überhaupt im
-gelieferten Kontext? Wenn nicht, ist eine falsche Antwort kein Modellfehler.
+- **Accuracy** on the 17 answerable questions (14 factual + 3 multi-hop)
+- **Refusal rate** on the 5 genuine gaps
 
-Die automatische Bewertung ist ein **Vorschlag**, kein Urteil. Die Spalte `korrekt_manuell`
-in `ergebnisse/handcodierung_basis.csv` enthält die Handcodierung, `korrekt_final`
-kombiniert beides. Der Cache speichert ausschließlich erfolgreiche Aufrufe —
-Fehlschläge im Cache erzeugen still falsche Messwerte.
+Measured separately: **evidence recall** — was the supporting passage present in the retrieved
+context at all? If it wasn't, a wrong answer is not a model error. Measuring this at document
+level rather than section level flattered the system by 12 percentage points.
+
+The automated grade is a **proposal, not a verdict**. `ergebnisse/handcodierung_basis.csv`
+holds the manual coding in `korrekt_manuell`; `korrekt_final` combines both. The cache stores
+successful calls only — cached failures would silently corrupt the measurements.
 
 ## Stack
 
-Python · sentence-transformers (`all-MiniLM-L6-v2`, lokal) · Groq `openai/gpt-oss-20b` · pandas · matplotlib
+Python · sentence-transformers (`all-MiniLM-L6-v2`, local) · Groq `openai/gpt-oss-20b` · pandas · matplotlib
