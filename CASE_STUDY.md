@@ -99,4 +99,4 @@ A bigger model would be the wrong investment: the model answered correctly every
 
 ---
 
-*Code, notebook with executed outputs, evaluation set and all raw results: [insert GitHub link]*
+*Code, notebook with executed outputs, evaluation set and all raw results: https://github.com/mikejyou/voltride-rag-case-study*
