@@ -1,70 +1,62 @@
-# VoltRide — RAG support assistant over internal documents
+# VoltRide — AI Product Management Case Studies
 
-A portfolio case study on **grounding and justified refusal**: when may a retrieval-augmented
-system answer, when must it stay silent, and what does each of the two failure directions cost?
+Two hands-on case studies on building and **evaluating** LLM features, written from a product
+manager's perspective rather than an engineer's. The focus is not "can this be built" — it can —
+but "how do I know whether it is good enough to ship, and what does it cost to run".
 
-> **All data is invented.** VoltRide is a fictional company; the six documents and the 25
-> evaluation questions are synthetic. No connection to any real employer. The upside: the
-> dataset carries ground-truth labels, which makes quality measurable rather than asserted.
+> ### All data here is fictional
+> VoltRide is an invented e-bike sharing company. The feedback corpus, the internal documents and
+> the evaluation questions were purpose-built for this portfolio. **No employer data is used.**
 >
-> The document corpus is in German, and so are the prompts and the model's answers. That is
-> deliberate — English-language retrieval is the easy case, and the central finding below is
-> partly a consequence of running an English-trained embedding model on German text. The
-> analysis, this README and the case study are in English.
+> That constraint turned into an advantage: a purpose-built dataset carries ground-truth labels,
+> which makes quality measurable rather than asserted.
 
-**→ [CASE_STUDY.md](CASE_STUDY.md)** — the write-up, 3–4 minutes.
+## The case studies
 
-## The result in three lines
+| # | Question | Outcome |
+|---|---|---|
+| [**1 — Feedback to roadmap**](case-study-1-feedback-to-roadmap/) | Can an LLM turn 2,500 monthly free-text responses into a prioritized backlog? | 73 % topic accuracy. Precision on safety alerts was fixable by prompting; recall was not — one report in three stayed undetected in every variant. Not shippable, and the write-up explains why. |
+| [**2 — RAG support assistant**](case-study-2-rag-support/) | Can a retrieval system answer from six internal documents *and* admit when the answer isn't there? | In progress |
 
-- Of 13 questions where the supporting passage was demonstrably in context, **12 were
-  answered correctly**. Every genuine failure happened one step earlier, during retrieval.
-- Three increasingly strict refusal rules moved accuracy **not at all**. The refusal rule is
-  insurance against retrieval failures, not a quality lever.
-- My own automated grader was wrong on **4 of 17** questions — 24 percentage points of
-  measurement error, produced by the instrument rather than the system.
+## What's in here
 
-![Grounding vs. refusal](images/tradeoff_grounding_vs_refusal.png)
+```
+data/
+  feedback_voltride.csv     60 labelled feedback items (ground truth for case study 1)
+  eval_questions_rag.csv    25 evaluation questions with known answers (case study 2)
+  docs/                     six fictional internal documents (knowledge base for case study 2)
+case-study-1-feedback-to-roadmap/
+  README.md                          the full write-up
+  notebook.ipynb                     the complete run, with outputs
+  error_analysis_v1.csv              the hand-coded error analysis
+  fig1_metrics_by_run.png            all metrics across the four runs
+  fig2_safety_precision_recall.png   the precision/recall trade-off
+```
 
-## Repository layout
+## A note on language
 
-| Path | Contents |
-|---|---|
-| `notebook/` | `CaseStudy2_RAG_Support.ipynb` — runs top to bottom, 11 cells |
-| `daten/docs/` | the six fictional company documents (German) |
-| `daten/eval_fragen_rag.csv` | 25 evaluation questions with known answers |
-| `ergebnisse/` | raw results of the three runs, metrics, retrieval diagnostics, manual coding |
-| `images/` | the figure used in the case study |
+The work was carried out in German. The feedback corpus deliberately mixes German and English,
+prompts were written in German, and category names were English. **The write-ups are in English;
+the data artefacts are not translated** — retranslating them would invalidate the measurements,
+and one of the findings in case study 1 depends on the German/English collision.
 
-Folder and column names inside the notebook and the result files are German, matching the
-corpus. `CASE_STUDY.md` explains every metric in English.
+## Method
 
-## Running it yourself
+Each case study follows the same discipline:
 
-1. Open the notebook in Google Colab (or locally with Jupyter).
-2. Get a free API key at [console.groq.com/keys](https://console.groq.com/keys) and store it
-   as the Colab secret `GROQ_API_KEY`.
-3. Upload the seven files from `daten/` — folder structure does not matter, cell 2 finds them.
-4. **Cells 1–5 make no API calls at all.** They contain the complete retrieval diagnostic,
-   including a regression warning that compares against the previous configuration. Only
-   cell 9 talks to the model.
-
-Three full runs over 25 questions cost about $0.01. Embeddings run locally and are free.
-
-## How quality is measured
-
-Two metrics, never merged into one:
-
-- **Accuracy** on the 17 answerable questions (14 factual + 3 multi-hop)
-- **Refusal rate** on the 5 genuine gaps
-
-Measured separately: **evidence recall** — was the supporting passage present in the retrieved
-context at all? If it wasn't, a wrong answer is not a model error. Measuring this at document
-level rather than section level flattered the system by 12 percentage points.
-
-The automated grade is a **proposal, not a verdict**. `ergebnisse/handcodierung_basis.csv`
-holds the manual coding in `korrekt_manuell`; `korrekt_final` combines both. The cache stores
-successful calls only — cached failures would silently corrupt the measurements.
+- a baseline run, measured before anything is changed
+- **one change per run**, with the expectation written down beforehand
+- error analysis by hand — open coding, then axial coding — never delegated to a model
+- failed calls are never disguised as predictions; a success-rate column runs alongside every metric
+- precision and recall reported together, never a single blended accuracy figure
+- a cost model built from measured token counts, not estimates
 
 ## Stack
 
-Python · sentence-transformers (`all-MiniLM-L6-v2`, local) · Groq `openai/gpt-oss-20b` · pandas · matplotlib
+Python · Groq (`openai/gpt-oss-20b`) · `sentence-transformers` · pandas · matplotlib
+Everything runs on free API tiers. Total inference cost across all runs: well under one euro.
+
+## Author
+
+Michael Seidou — product manager, working towards AI product roles.
+Website: [michaelseidou.com](https://michaelseidou.com)
