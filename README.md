@@ -16,7 +16,7 @@ but "how do I know whether it is good enough to ship, and what does it cost to r
 | # | Question | Outcome |
 |---|---|---|
 | [**1 — Feedback to roadmap**](case-study-1-feedback-to-roadmap/) | Can an LLM turn 2,500 monthly free-text responses into a prioritized backlog? | 73 % topic accuracy. Precision on safety alerts was fixable by prompting; recall was not — one report in three stayed undetected in every variant. Not shippable, and the write-up explains why. |
-| [**2 — RAG support assistant**](case-study-2-rag-support/) | Can a retrieval system answer from six internal documents *and* admit when the answer isn't there? | In progress |
+| [**2 — RAG support assistant**](case-study-2-rag-support/) | Can a retrieval system answer from six internal documents *and* admit when the answer isn't there? | Of 13 questions where the supporting passage was in context, 12 were answered correctly — every genuine failure happened during retrieval, not in the model. Three increasingly strict refusal regimes moved accuracy not at all. Three complete runs cost $0.0094. |
 
 ## What's in here
 
@@ -31,6 +31,12 @@ case-study-1-feedback-to-roadmap/
   error_analysis_v1.csv              the hand-coded error analysis
   fig1_metrics_by_run.png            all metrics across the four runs
   fig2_safety_precision_recall.png   the precision/recall trade-off
+case-study-2-rag-support/
+  README.md                          the full write-up
+  CASE_STUDY.md                      the long-form write-up
+  notebook.ipynb                     the complete run, with outputs
+  results/                           raw output of the three runs
+  fig_tradeoff_grounding_vs_refusal.png   grounding versus refusal
 ```
 
 ## A note on language

@@ -99,4 +99,5 @@ A bigger model would be the wrong investment: the model answered correctly every
 
 ---
 
-*Code, notebook with executed outputs, evaluation set and all raw results: https://github.com/mikejyou/voltride-rag-case-study*
+*Notebook with executed outputs, evaluation set and all raw results are in this folder:
+[`notebook.ipynb`](notebook.ipynb) · [`../data/`](../data/) · [`results/`](results/)*
