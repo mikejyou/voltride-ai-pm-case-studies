@@ -1,0 +1,61 @@
+id,sprache,text,cluster_wahr,sentiment_wahr,feature_request_wahr,severity_wahr,didaktischer_hinweis
+F001,de,"Das Rad lässt sich per App einfach nicht entsperren, ich stand 10 Minuten dumm da.",unlock_issue,neg,0,3,Kernbeschwerde
+F002,en,Can't unlock the bike through the app. Waited forever at the station.,unlock_issue,neg,0,3,Gleiche Beschwerde auf Englisch - Cross-Lingual-Test
+F003,de,"Entsperren funktioniert nicht zuverlässig, jedes zweite Mal Fehlermeldung.",unlock_issue,neg,0,3,Near-Duplicate zu F001
+F004,de,"Der QR-Code am Lenker wird nicht erkannt, egal wie ich das Handy halte.",unlock_issue,neg,0,2,"Gleiches Cluster, andere Ursache"
+F005,de,Seit dem Update klappt das Entsperren endlich sofort. Danke!,unlock_issue,pos,0,1,Positiv im selben Cluster - Sentiment-Test
+F006,de,Der neue Sperrmechanismus ist wirklich super gelöst.,unlock_issue,pos,0,1,KONTRASTPAAR A - siehe F007
+F007,de,Der neue Sperrmechanismus ist wirklich schlecht gelöst.,unlock_issue,neg,0,3,"KONTRASTPAAR B - fast identischer Vektor, Gegenteil gemeint"
+F008,de,"Die App stürzt jedes Mal ab, wenn ich ein Foto zum Abstellen hochlade.",app_crash,neg,0,3,Kernbeschwerde
+F009,en,Crash every time I upload the parking photo. Android 15.,app_crash,neg,0,3,Cross-Lingual + Kontextinfo
+F010,de,App friert beim Fotoupload ein und muss neu gestartet werden.,app_crash,neg,0,3,"Near-Duplicate, andere Worte"
+F011,de,Nach dem letzten Update startet die App gar nicht mehr.,app_crash,neg,0,4,"Gleiches Cluster, hoehere Severity"
+F012,en,"App is very slow to load the map, takes 15 seconds.",app_crash,neg,0,2,Performance vs. Crash - Abgrenzungsfall
+F013,de,"Das Rad hatte kaum noch Akku, obwohl die App 80 Prozent angezeigt hat.",bike_defect,neg,0,3,Datenfehler als Defekt
+F014,de,Sattel war lose und ließ sich nicht feststellen.,bike_defect,neg,0,2,Mechanik
+F015,de,"Die Bremse hat auf der Fahrt komplett versagt, ich bin gestürzt.",safety,neg,0,4,SICHERHEITSKRITISCH - darf nie falsch eingeordnet werden
+F016,en,Front brake failed while riding downhill. This is dangerous.,safety,neg,0,4,"Sicherheitskritisch, englisch"
+F017,de,"Licht vorne war defekt, abends echt unangenehm.",safety,neg,0,3,Grenzfall zwischen bike_defect und safety
+F018,de,Der Minutenpreis ist für die Qualität der Räder zu hoch.,pricing,neg,0,2,Preisbeschwerde
+F019,en,Way too expensive compared to the competitor across the street.,pricing,neg,0,2,Wettbewerbserwaehnung
+F020,de,"Bitte ein Monatsabo für Vielfahrer einführen, zahle sonst 90 Euro im Monat.",pricing,neg,1,2,FEATURE REQUEST getarnt als Preisbeschwerde
+F021,de,Das Studententarif-Angebot finde ich richtig fair.,pricing,pos,0,1,Positiv
+F022,de,In meinem Stadtteil gibt es abends nie freie Räder.,coverage,neg,0,2,Verfuegbarkeit
+F023,de,"Bitte das Geschäftsgebiet nach Norden erweitern, ich wohne knapp außerhalb.",coverage,neg,1,2,Feature Request
+F024,en,No bikes available near the train station in the morning. Ever.,coverage,neg,0,2,Cross-Lingual
+F025,de,Mir wurden 14 Euro abgebucht für eine Fahrt von 6 Minuten.,billing,neg,0,3,Abrechnungsfehler
+F026,de,"Die Fahrt wurde nicht beendet und lief 3 Stunden weiter, obwohl ich abgeschlossen habe.",billing,neg,0,3,Verwandt mit unlock_issue - Cluster-Grenzfall
+F027,en,Charged twice for the same trip. Support did not answer for 5 days.,billing,neg,0,3,Zwei Themen in einem Item
+F028,de,"Rechnungen als PDF wären praktisch, für die Steuer.",billing,neutral,1,1,"Feature Request, niedrige Severity"
+F029,de,"App stürzte ab, danach ließ sich das Rad nicht entsperren und abgerechnet wurde trotzdem.",app_crash,neg,0,3,MULTI-ISSUE: app_crash + unlock_issue + billing
+F030,en,"Bike had a flat tire, the app crashed, and I still got charged. Terrible.",bike_defect,neg,0,3,"MULTI-ISSUE, englisch"
+F031,de,"Ganz toll, wieder 20 Minuten in der App gestanden. Klasse Service.",unlock_issue,neg,0,3,SARKASMUS - naives Sentiment liest 'toll/klasse' als positiv
+F032,de,"Super Idee, das Rad mitten auf dem Radweg abstellen zu lassen. Wirklich durchdacht.",coverage,neg,0,2,"Sarkasmus, zweites Beispiel"
+F033,de,"Insgesamt richtig gutes Konzept, nutze es täglich zur Arbeit.",praise,pos,0,1,Klar positiv
+F034,en,"Love the new app design, much cleaner than before.",praise,pos,0,1,"Positiv, englisch"
+F035,de,Die Räder sind bequemer als bei der Konkurrenz.,praise,pos,0,1,Positiv mit Wettbewerbsbezug
+F036,de,Support hat sich schnell gemeldet und das Geld erstattet.,praise,pos,0,1,Positiv zu einem sonst negativen Thema
+F037,de,asdfasdf test test,noise,neutral,0,1,NOISE - muss gefiltert werden
+F038,de,Wie ist das Wetter morgen in Leipzig?,noise,neutral,0,1,NOISE - themenfremd
+F039,en,Best casino bonus click here www.example-spam.invalid,noise,neutral,0,1,NOISE - Spam
+F040,de,"Ich meinte eigentlich die App von der Bahn, sorry.",noise,neutral,0,1,NOISE - falsche App
+F041,de,"Wäre gut, wenn man ein Rad 15 Minuten vorab reservieren könnte.",coverage,neutral,1,2,Klassischer Feature Request
+F042,en,Please add Apple Wallet support for payments.,billing,neutral,1,1,Feature Request
+F043,de,Ein Helm-Fach am Rad wäre großartig.,bike_defect,neutral,1,1,"Feature Request, Hardware"
+F044,de,Bitte Integration mit dem ÖPNV-Ticket der Stadt.,coverage,neutral,1,2,"Feature Request, Partnerschaft"
+F045,en,"Dark mode please, the app is blinding at night.",app_crash,neutral,1,1,"Feature Request, UI"
+F046,de,Ich hätte gern eine dunkle Ansicht für die Nacht.,app_crash,neutral,1,1,Near-Duplicate zu F045 ueber Sprachgrenze
+F047,de,"Grundsätzlich gut, aber die Preiserhöhung letzten Monat war zu viel.",pricing,neutral,0,2,AMBIVALENT - pos + neg in einem Satz
+F048,en,"Great bikes, terrible app.",app_crash,neutral,0,3,"AMBIVALENT, sehr kompakt"
+F049,de,"Nutze es gern, wobei die Verfügbarkeit besser sein könnte.",coverage,neutral,0,2,"AMBIVALENT, hoeflich formuliert"
+F050,de,Mies.,praise,neg,0,2,EXTREM KURZ - wenig Signal
+F051,de,"Ich nutze VoltRide seit acht Monaten fast täglich für den Weg zur Arbeit und war lange sehr zufrieden. In den letzten Wochen häufen sich allerdings Probleme: zweimal ließ sich das Rad nicht entsperren, einmal wurde die Fahrt nicht beendet und lief drei Stunden weiter, und der Support brauchte fünf Tage für eine Antwort. Ich möchte eigentlich Kunde bleiben, aber so geht es nicht weiter. Eine verlässliche Statusanzeige, ob ein Rad wirklich abgeschlossen ist, würde schon viel helfen.",unlock_issue,neg,1,3,"SEHR LANG, mehrere Themen + Feature Request am Ende"
+F052,de,Rad war komplett verdreckt und die Kette sprang ständig ab.,bike_defect,neg,0,2,
+F053,en,Tire pressure was too low on both bikes I tried.,bike_defect,neg,0,2,
+F054,de,"Die Karte zeigt Räder an, die gar nicht mehr da sind.",coverage,neg,0,2,
+F055,en,Map shows ghost bikes that don't exist.,coverage,neg,0,2,Cross-Lingual zu F054
+F056,de,Registrierung mit der Führerscheinprüfung hat sehr lange gedauert.,app_crash,neg,0,2,
+F057,de,"Bitte eine Familienfunktion, damit ich zwei Räder gleichzeitig buchen kann.",coverage,neutral,1,2,Feature Request
+F058,en,"Refund process is unclear, I don't know where to file a complaint.",billing,neg,0,2,
+F059,de,Der Klingelton der App beim Abschließen ist viel zu laut.,app_crash,neg,0,1,"Kosmetisch, niedrige Severity"
+F060,de,"Alles bestens, weiter so.",praise,pos,0,1,
