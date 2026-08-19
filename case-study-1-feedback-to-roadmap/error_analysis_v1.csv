@@ -1,0 +1,18 @@
+﻿id;text;cluster_wahr;cluster;sentiment_wahr;sentiment;feature_request_wahr;feature_request;severity_wahr;severity;code;notiz;label_strittig
+F016;Front brake failed while riding downhill. This is dangerous.;safety;bike_defect;neg;neg;0;0;4;3;sicherheit_nicht_priorisiert;"severity zu  niedrig; das ist ein Sicherheitsrisiko";0
+F017;Licht vorne war defekt, abends echt unangenehm.;safety;bike_defect;neg;neg;0;0;3;2;sicherheit_nicht_priorisiert;"Clusterfehler; Rest geht in die richtige Richtung; bike_defect anstatt safety";0
+F026;Die Fahrt wurde nicht beendet und lief 3 Stunden weiter, obwohl ich abgeschlossen habe.;billing;bike_defect;neg;neg;0;0;3;3;;Cluster_wahr und Cluster sind falsch. Richtig wäre ein lock_issue das zum billing issue führte;1
+F030;Bike had a flat tire, the app crashed, and I still got charged. Terrible.;bike_defect;app_crash;neg;neg;0;0;3;3;verschiedene_Fehler;bike_defect & app_crash und billing in einer Meldung;0
+F031;Ganz toll, wieder 20 Minuten in der App gestanden. Klasse Service.;unlock_issue;praise;neg;pos;0;0;3;1;ironie_woertlich;"Severity falsch; Ironie wurde nicht erkannt";0
+F032;Super Idee, das Rad mitten auf dem Radweg abstellen zu lassen. Wirklich durchdacht.;coverage;praise;neg;pos;0;0;2;1;ironie_woertlich;Ironie wurde nicht erkannt;0
+F037;asdfasdf test test;noise;app_crash;neutral;neutral;0;0;1;1;noise_nicht_erkannt;"Spam; Noise";0
+F038;Wie ist das Wetter morgen in Leipzig?;noise;praise;neutral;neutral;0;0;1;1;noise_nicht_erkannt;"Keine Nennung über Fahrt; Räder oder etwas Produktbezogenes";0
+F040;Ich meinte eigentlich die App von der Bahn, sorry.;noise;app_crash;neutral;neutral;0;0;1;1;noise_nicht_erkannt;"Falsch verstanden; Noise";0
+F041;Wäre gut, wenn man ein Rad 15 Minuten vorab reservieren könnte.;coverage;praise;neutral;pos;1;1;2;1;schema_verletzung;"feauture_request ist eine eigene Spalte; kein label";0
+F043;Ein Helm-Fach am Rad wäre großartig.;bike_defect;praise;neutral;pos;1;1;1;1;schema_verletzung;"feauture_request ist eine eigene Spalte; kein label";0
+F044;Bitte Integration mit dem ÖPNV-Ticket der Stadt.;coverage;pricing;neutral;neutral;1;1;2;2;schema_verletzung;"feauture_request ist eine eigene Spalte; kein label";0
+F050;Mies.;praise;app_crash;neg;neg;0;0;2;2;;Cluster_wahr ist falsch;1
+F054;Die Karte zeigt Räder an, die gar nicht mehr da sind.;coverage;bike_defect;neg;neg;0;0;2;2;coverage_topic;"Kein bike_defect; der Fehler liegt an der App.";0
+F055;Map shows ghost bikes that don't exist.;coverage;bike_defect;neg;neg;0;0;2;2;coverage_topic;"Kein bike_defect; der Fehler liegt an der App. Fehler bereits in F054 vorhanden";0
+F057;Bitte eine Familienfunktion, damit ich zwei Räder gleichzeitig buchen kann.;coverage;praise;neutral;neutral;1;1;2;1;schema_verletzung;"feauture_request ist eine eigene Spalte; kein label";0
+F059;Der Klingelton der App beim Abschließen ist viel zu laut.;app_crash;noise;neg;neg;0;0;1;2;schema_verletzung;"feauture_request ist eine eigene Spalte; kein label";0
